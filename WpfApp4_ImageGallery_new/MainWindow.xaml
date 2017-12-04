@@ -3,13 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp4_ImageGallery_new"
+        xmlns:er="clr-namespace:WpfApp4_ImageGallery_new"
         mc:Ignorable="d"
-        Title="MainWindow" Height="758.006" Width="1006.741">
+        Title="MainWindow" Height="644.006" Width="1006.741" MinWidth="500" Closing="Window_Closing">
+
+    <Window.Resources>
+        <!-- Photo Template -->
+        <DataTemplate DataType="{x:Type er:Photo}">
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="6">
+                <!-- Drop Shadow -->
+                <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CornerRadius="4" Background="#44000000">
+                    <Border.RenderTransform>
+                        <TranslateTransform X="5" Y="5" />
+                    </Border.RenderTransform>
+                    <Border.BitmapEffect>
+                        <BlurBitmapEffect Radius="8" />
+                    </Border.BitmapEffect>
+                </Border>
+                <!-- Image Template -->
+                <Border Padding="4" Background="White" BorderBrush="#22000000" BorderThickness="1">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Image}"/>
+                        <Label Content="{Binding ImageName}">
+                            <!--<Label.ToolTip>
+                               Only JPeg images with a stored thumbnail will display a thumbnail during preview.
+                           </Label.ToolTip>-->
+                        </Label>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="{x:Type ListBox}" x:Key="PhotoListBoxStyle">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <WrapPanel x:Name="wrapPanel1" Margin="5" IsItemsHost="True" Orientation="Horizontal"
+                                   ItemHeight= "{Binding ElementName=slider1, Path=Value}"
+                                   ItemWidth= "{Binding ElementName=slider1, Path=Value}"
+                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="Grid1">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="728*"/>
-            <ColumnDefinition Width="271*"/>
+            <ColumnDefinition Width="728*" MinWidth="300"/>
+            <ColumnDefinition Width="271*" MinWidth="150"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="5" Grid.Column="1" CornerRadius="10" Margin="5,5,10,10" BorderBrush="#FF3399FF">
             <Border.Effect>
@@ -18,15 +60,20 @@
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InactiveCaptionColorKey}}"/>
             </Border.Background>
-            <StackPanel Margin="5">
-                <Label Content="Label"/>
-                <Label Content="Label"/>
-                <Label Content="Label"/>
-                <Label Content="Label"/>
-                <Label Content="Label"/>
-
-            </StackPanel>
-
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="179*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="5" Grid.RowSpan="2">
+                    <Label Content="Label" Style="{StaticResource MyLabelRight}"/>
+                    <Label Content="Label"/>
+                    <Label Content="Label"/>
+                    <Label Content="Label"/>
+                    <Label Content="Label"/>
+                </StackPanel>
+                <Slider x:Name="slider1" Margin="10" Grid.Row="1" Minimum="100" Maximum="500" LargeChange="100" Value="200" SmallChange="10" Foreground="#FF3399FF" />
+            </Grid>
 
         </Border>
         <Grid>
@@ -41,7 +88,7 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
-                    <TextBox Height="25" TextWrapping="Wrap" Text="TextBox" Margin="0,15,10,0">
+                    <TextBox x:Name="textBox1" Height="25" TextWrapping="Wrap" Margin="0,15,10,0" >
                         <TextBox.Effect>
                             <DropShadowEffect/>
                         </TextBox.Effect>
@@ -52,7 +99,7 @@
                         <DropShadowEffect/>
                     </Label.Effect>
                 </Label>
-                <Button Content="Обзор" Grid.Column="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="25" Width="75" Background="#FFBFCDDB">
+                <Button Content="Обзор" Grid.Column="2" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Height="25" Width="75" Background="#FFBFCDDB" Click="Button_Click" FontWeight="Bold" FontStyle="Italic">
                     <Button.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -64,7 +111,7 @@
                     </Button.Effect>
                 </Button>
             </Grid>
-            <Grid Margin="0,50,0,0" Grid.RowSpan="2">
+            <Grid Margin="0,50,0,0" Grid.RowSpan="2" DataContext="{Binding Source={StaticResource Photos}}">
                 <Border Margin="5,5,5,10" BorderThickness="5" CornerRadius="10">
                     <Border.Effect>
                         <DropShadowEffect/>
@@ -72,37 +119,22 @@
                     <Border.BorderBrush>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}"/>
                     </Border.BorderBrush>
-                    <ScrollViewer Margin="5">
-                        <Grid Margin="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="150"/>
-                                <RowDefinition Height="150*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150*" MinWidth="150"/>
-                                <ColumnDefinition Width="150*"/>
-                                <ColumnDefinition Width="150*"/>
-                                <ColumnDefinition Width="150*"/>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" Grid.Row="0" Style="{StaticResource MyBorderStyle}">
-                                <StackPanel  Margin="5,5,5,5">
-                                    <Border Style="{StaticResource MyBorderInnerImage}">
-                                        <Image Height="100"/>
-                                    </Border>
-                                    <Label Content="Label" FontSize="10"/>
-                                </StackPanel>
-                            </Border>
-                            <Border Grid.Column="1" Grid.Row="0" Style="{StaticResource MyBorderStyle}">
-                                <StackPanel  Margin="5,5,5,5">
-                                    <Border  Style="{StaticResource MyBorderInnerImage}">
-                                        <Image Height="100"/>
-                                    </Border>
-                                    <Label Content="Label" FontSize="10"/>
-                                </StackPanel>
-                            </Border>
-
-                        </Grid>
+                    <!--<ScrollViewer Margin="5">-->
+                    <!--<GroupBox Margin="5" Grid.Column="0" Grid.Row="1">-->
+                    <ScrollViewer  Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <ListBox
+                    IsSynchronizedWithCurrentItem="True"
+                    Name="PhotosListBox"
+                    Style="{StaticResource PhotoListBoxStyle}"
+                    Margin="5"
+                    SelectionMode="Extended"
+                    ItemsSource="{Binding}"
+                    SelectedIndex="0"
+                    MouseDoubleClick = "OnPhotoClick">
+                        </ListBox>
                     </ScrollViewer>
+                    <!--</GroupBox>-->
+                    <!--</ScrollViewer>-->
                 </Border>
             </Grid>
         </Grid>

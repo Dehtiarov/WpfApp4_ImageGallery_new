@@ -14,3 +14,8 @@ l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\o
 l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\WpfApp4_ImageGallery_new.exe
 l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\WpfApp4_ImageGallery_new.pdb
 l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\App.baml
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\GeneratedInternalTypeHelper.g.cs
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\Window1.g.cs
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\obj\Debug\Window1.baml
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\bin\Debug\ImageConverter.dll
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\WpfApp4_ImageGallery_new\bin\Debug\ImageConverter.pdb

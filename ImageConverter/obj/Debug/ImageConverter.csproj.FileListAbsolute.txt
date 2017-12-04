@@ -1,0 +1,6 @@
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\bin\Debug\ImageConverter.dll
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\bin\Debug\ImageConverter.pdb
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\obj\Debug\ImageConverter.csprojResolveAssemblyReference.cache
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\obj\Debug\ImageConverter.csproj.CoreCompileInputs.cache
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\obj\Debug\ImageConverter.dll
+l:\vs2017enterprise\Projects\WpfApp4_ImageGallery_new\ImageConverter\obj\Debug\ImageConverter.pdb
