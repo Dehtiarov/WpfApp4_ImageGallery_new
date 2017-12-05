@@ -21,6 +21,7 @@ namespace WpfApp4_ImageGallery_new
         {
             _pathOriginal = path;
             _path = Environment.CurrentDirectory + ConfigurationManager.AppSettings["ImagePath"].ToString() + Guid.NewGuid().ToString() + ".jpg";
+
             using (var image = System.Drawing.Image.FromFile(_pathOriginal))
             {
                 var newImageSmall = ImageConverter.ImageWorker.ConverImageToBitmap(image, 320, 240);

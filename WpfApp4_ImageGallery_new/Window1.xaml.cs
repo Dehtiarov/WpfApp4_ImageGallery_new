@@ -116,7 +116,7 @@ namespace WpfApp4_ImageGallery_new
                 imageBox2.Source =crop;
                 BitmapEncoder pngEncoder = new PngBitmapEncoder();
                 pngEncoder.Frames.Add(BitmapFrame.Create(crop));
-
+               
                 using (var fs = System.IO.File.OpenWrite("crop.jpg"))
                 {
                     pngEncoder.Save(fs);

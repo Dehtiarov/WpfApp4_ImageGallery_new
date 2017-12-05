@@ -88,7 +88,7 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="1">
-                    <TextBox x:Name="textBox1" Height="25" TextWrapping="Wrap" Margin="0,15,10,0" >
+                    <TextBox x:Name="textBox1" Height="25" TextWrapping="NoWrap" Margin="0,15,10,0" >
                         <TextBox.Effect>
                             <DropShadowEffect/>
                         </TextBox.Effect>
